@@ -163,3 +163,16 @@ var incorrectAudio = () => {
   var audio = new Audio('./assets/sfx/incorrect.wav');
   audio.play();
 };
+
+//Storing user initials and scores in local storage
+submitButtonEl.addEventListener("click", function(event){
+    event.preventDefault();
+  
+   var player = {
+      userInitials: initialsPlayer.value,
+      userScore: scoreEl.textContent
+   };
+
+    localStorage.setItem("player", player.userInitials + " - " + player.userScore);
+    initialsPlayer.value = "";
+  });

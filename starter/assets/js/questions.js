@@ -151,3 +151,15 @@ function answerValidation(event) {
 
   nextQuestion();
 };
+
+//Function to play correct sound when answer is correct
+var correctAudio = () => {
+    var audio = new Audio('./assets/sfx/correct.wav');
+    audio.play();
+};
+
+// Function to play incorrect sound when answer is incorrect
+var incorrectAudio = () => {
+  var audio = new Audio('./assets/sfx/incorrect.wav');
+  audio.play();
+};

@@ -75,3 +75,42 @@ var timeLeft = 75;
 
 // Event listener for when user clicks on Start Quiz
 startButtonEl.addEventListener("click", startGame);
+
+// Event listener for when user selects one of the dropdown choices
+for (var i = 0; i < arrayChoices.length; i++) {
+    arrayChoices[i].addEventListener("click", answerValidation);
+};
+
+// Function to begin 
+function startGame() {
+  var timeInterval = setInterval(() => {
+      timeLeft--;
+      timerEl.textContent = timeLeft;
+      if (timeLeft === 0) {
+          clearInterval(timeInterval);
+      }
+  }, 
+  
+  1000);
+
+  function pauseTimer() {
+    clearInterval(timeInterval);
+  };
+
+  startGame.pauseTimer = pauseTimer;
+  startScreenEl.remove();
+  renderQuestion();
+};
+
+
+//Function to render questions
+var renderQuestion = () => {
+  questEl.setAttribute("class", "display");
+  var question = arrayList[currentQuestIndex];
+  titleEl.textContent = question.title;
+  
+  for (var i = 0; i < arrayChoices.length; i++) {
+    choicesEl.appendChild(arrayChoices[i]);
+    arrayChoices[i].textContent = question.choices[i];
+  };
+};

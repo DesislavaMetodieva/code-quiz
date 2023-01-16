@@ -114,3 +114,40 @@ var renderQuestion = () => {
     arrayChoices[i].textContent = question.choices[i];
   };
 };
+
+// Show next question function
+const nextQuestion = () => {
+    currentQuestIndex = currentQuestIndex + 1;
+    if (currentQuestIndex < arrayList.length) {
+
+        renderQuestion();
+
+    } else {
+        
+        questEl.remove();
+        feedbackEl.remove();
+        endEl.setAttribute("class", "display");
+        startGame.pauseTimer();
+        scoreEl.textContent = timeLeft;
+    };
+};
+
+//Function to display question feedback
+function answerValidation(event) {
+  var userAnswer = event.target.id;
+
+  //  validation if the user selects the correct answer and if I am targetting the correct element from the DOM
+  // console.log(userAnswer);
+
+  feedbackEl.setAttribute("class", "feedback");
+  if (userAnswer == arrayList[currentQuestIndex].correctAnswer){
+    feedbackEl.textContent = "Correct!";
+    correctAudio();
+  } else {
+    feedbackEl.textContent = "Wrong!";
+    incorrectAudio();
+    timeLeft = timeLeft - 10;
+  }; 
+
+  nextQuestion();
+};

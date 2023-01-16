@@ -32,4 +32,46 @@ var q5 = {
     correctAnswer: 1
 }
 
-var arrayList = [q1, q2, q3, q4, q5];
+var arrayList;
+arrayList = [q1, q2, q3, q4, q5];
+
+// Variables to create button elements for options
+
+var choice1 = document.createElement("button");
+var choice2 = document.createElement("button");
+var choice3 = document.createElement("button");
+var choice4 = document.createElement("button");
+
+choice1.setAttribute("id", 0);
+choice2.setAttribute("id", 1);
+choice3.setAttribute("id", 2);
+choice4.setAttribute("id", 3);
+
+//An array of option buttons
+var arrayChoices = [choice1, choice2, choice3, choice4];
+
+//A variable for question number
+var currentQuestIndex = 0;
+
+// DOM elements
+
+var timerEl = document.getElementById("time");
+var startScreenEl = document.getElementById("start-screen");
+var startButtonEl = document.getElementById("start");
+var questEl = document.getElementById("questions");
+var titleEl = document.getElementById("question-title");
+var choicesEl = document.getElementById("choices");
+var endEl = document.getElementById("end-screen");
+var scoreEl = document.getElementById("final-score");
+var initialsPlayer = document.getElementById("initials");
+var submitButtonEl = document.getElementById("submit");
+var feedbackEl = document.getElementById("feedback");
+
+
+
+//Quiz time is 75 seconds
+var timeLeft = 75;
+
+
+// Event listener for when user clicks on Start Quiz
+startButtonEl.addEventListener("click", startGame);

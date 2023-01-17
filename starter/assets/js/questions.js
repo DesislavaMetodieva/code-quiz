@@ -167,12 +167,46 @@ var incorrectAudio = () => {
 //Storing user initials and scores in local storage
 submitButtonEl.addEventListener("click", function(event){
     event.preventDefault();
-  
-   var player = {
-      userInitials: initialsPlayer.value,
-      userScore: scoreEl.textContent
-   };
-
-    localStorage.setItem("player", player.userInitials + " - " + player.userScore);
-    initialsPlayer.value = "";
+    saveCurrentScore();
   });
+
+
+  
+//A function to save player scores
+function saveCurrentScore() {
+    
+    var initials = document.getElementsByTagName("input")[0].value;
+    var score = timeLeft;
+
+
+ localStorage.setItem("initials", initials);
+ localStorage.setItem("score", score);
+    
+};
+
+var initials = localStorage.getItem("initials");
+var score = localStorage.getItem("score");
+
+console.log(initials);
+console.log(score);
+
+//set variables to get elements from doc
+var scoresList = document.getElementById("highscores");
+var clearButton = document.getElementById("clear");
+
+
+// //A for loop to add a list element for each player with their scores and initials displayed
+for(var i = 0; i < initials.length; i++){
+   var listItem = document.createElement("li");
+    listItem.textContent = initials + score;
+    scoresList.appendChild(listItem);
+};
+
+clearButton.addEventListener("click", clearHighScores);
+
+ //Function to clear highscores
+
+ function clearHighScores() {
+   localStorage.clear();
+   scoresList.remove();
+ };

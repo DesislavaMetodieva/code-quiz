@@ -12,6 +12,8 @@ No need for specific installation, you need only a web browser and good internet
 
 Please follow the URL, so you can open the application: https://desislavametodieva.github.io/code-quiz/
 
+![image](https://user-images.githubusercontent.com/82023025/213021319-6c568d7e-7dab-4470-8930-085c21ab7ad4.png)
+
 # Credits
 
 No collaborators for now.

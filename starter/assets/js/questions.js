@@ -165,22 +165,27 @@ var incorrectAudio = () => {
 };
 
 //Storing user initials and scores in local storage
-submitButtonEl.addEventListener("click", function(event){
-    event.preventDefault();
-    saveCurrentScore();
-  });
+// submitButtonEl.addEventListener("click", function (event){
+//     event.preventDefault();
+//     saveCurrentScore();
+
+// });
 
 
+//set variables to get elements from doc
+var scoresList = document.getElementById("highscores");
+var clearButton = document.getElementById("clear");
   
 //A function to save player scores
 function saveCurrentScore() {
-    
-    var initials = document.getElementsByTagName("input")[0].value;
-    var score = timeLeft;
-
-
- localStorage.setItem("initials", initials);
- localStorage.setItem("score", score);
+    event.preventDefault();
+ var initials = document.getElementsByTagName("input")[0].value;
+ var score = timeLeft;
+ localStorage.setItem("initials", JSON.stringify(initials));
+ localStorage.setItem("score", JSON.stringify(score));
+ passValues();
+ saveCurrentScore();
+ renderScore();
     
 };
 
@@ -190,19 +195,34 @@ var score = localStorage.getItem("score");
 console.log(initials);
 console.log(score);
 
-//set variables to get elements from doc
-var scoresList = document.getElementById("highscores");
-var clearButton = document.getElementById("clear");
+function savedScore() {
+    saveCurrentScore();
+    var initials = localStorage.getItem("initials");
+    var score = localStorage.getItem("score");
+    
+    score = JSON.parse(score);
+    initials = JSON.parse(initials);
 
-
-// //A for loop to add a list element for each player with their scores and initials displayed
-for(var i = 0; i < initials.length; i++){
-   var listItem = document.createElement("li");
-    listItem.textContent = initials + score;
-    scoresList.appendChild(listItem);
+    //document.getElementById("highScores").innerHTML = initials + " - " + score;
 };
 
-clearButton.addEventListener("click", clearHighScores);
+
+var renderScore = () => {
+    for(var i = 0; i < initials.length; i++) {
+           var listItem = document.createElement("li");
+            listItem.textContent = initials + score;
+            scoresList.appendChild(listItem);
+    };
+}
+
+// // //A for loop to add a list element for each player with their scores and initials displayed
+// for(var i = 0; i < initials.length; i++){
+//    var listItem = document.createElement("li");
+//     listItem.textContent = initials + score;
+//     scoresList.appendChild(listItem);
+// };
+
+//clearButton.addEventListener("click", clearHighScores);
 
  //Function to clear highscores
 
